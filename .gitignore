@@ -1,0 +1,7 @@
+
+*.iml
+*.xml
+*.pyc
+config.py
+modeldata/model.pb
+modeldata/config.meta
