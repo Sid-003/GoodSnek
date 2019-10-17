@@ -5,3 +5,4 @@
 config.py
 modeldata/model.pb
 modeldata/config.meta
+eyes/redflare.png

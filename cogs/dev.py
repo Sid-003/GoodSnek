@@ -1,8 +1,6 @@
-import inspect
 import textwrap
+from discord.ext import commands
 
-from discord.ext import  commands
-import asyncio
 
 class Dev(commands.Cog):
     """Owner only commands"""
