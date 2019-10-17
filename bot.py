@@ -1,13 +1,11 @@
-import traceback
-import discord
-from datetime import  datetime as dt
 import sys
+import traceback
+
+import aiohttp
+from darkflow.net.build import TFNet
 from  discord.ext import commands
-from discord.ext.commands import CommandNotFound, CommandOnCooldown, MissingRequiredArgument, BadArgument, Context
 
-import  config
-
-modules = ['cogs.info', 'cogs.dev', 'cogs.cogs', 'cogs.image']
+modules = ['cogs.info', 'cogs.dev', 'cogs.cogs', 'cogs.image', 'cogs.dictionary']
 
 
 def _prefix_callback(bot, msg):
@@ -17,6 +15,9 @@ def _prefix_callback(bot, msg):
 class GoodSnek(commands.Bot):
     def __init__(self):
         super().__init__(_prefix_callback, description='very cool bot')
+        options = {"pbLoad": "modeldata/model.pb", "metaLoad": "modeldata/config.meta", "threshold": 0.1}
+        self.tfnet = TFNet(options)
+        self.session = aiohttp.ClientSession(loop=self.loop)
         for cog in modules:
             try:
                 self.load_extension(cog)
